@@ -266,10 +266,9 @@ def get_app_name_regex_from_app_urls(app_name):
         view_class = getattr(views_module, str(url_pattern._callback.func_name))
 
         class_instance = view_class()
-
-        try:
+        if hasattr(class_instance, 'template_name'):
             templates = class_instance.template_name
-        except (ImproperlyConfigured, TypeError) as e:
+        else:
             templates = None
         views_and_regex[url_pattern.name]['templates'] = templates
         views_and_regex[url_pattern.name]['regex'] = url_pattern._regex
@@ -293,9 +292,9 @@ def get_app_name_regex_from_app_urls_detailed(app_name):
 
         class_instance = view_class()
 
-        try:
+        if hasattr(class_instance, 'template_name'):
             templates = class_instance.template_name
-        except ImproperlyConfigured:
+        else:
             templates = None
         views_and_regex[url_pattern.name]['templates'] = templates
         views_and_regex[url_pattern.name]['regex'] = url_pattern._regex
