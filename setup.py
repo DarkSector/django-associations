@@ -22,7 +22,6 @@ setup(
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
-        'Intended Audience :: Designers',
         'Intended Audience :: Science/Research',
         'Intended Audience :: Information Technology'
         'License :: OSI Approved :: MIT License', # example license
