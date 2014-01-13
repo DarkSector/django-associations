@@ -8,7 +8,7 @@ For each app a list of views, view names, view types and urls are shown
 Requirements
 ============
 
-Currently works with Django 1.6 and Python 2.7.x
+Currently works with Django 1.5 above and Python 2.7.x
 
 
 Quick start
