@@ -33,13 +33,13 @@
             <ul>
 
                 <li {% if installed_apps_flag %}class="pure-menu-selected menu-item-divided"{% endif %}>
-                    <a href="{% url 'ass_installed_apps' %}">Installed Apps</a>
+                    <a href="{% url 'associations_installed_apps' %}">Installed Apps</a>
                 </li>
 
                 <li class="menu-item-divided">
-                    <a href="">Usage</a>
+                    <a href="{% url 'app_usage' %}">Usage</a>
                 </li>
-                <li><a href="">About</a></li>
+                <li><a href="{% url 'show_about_page' %}">About</a></li>
 
             </ul>
         </div>

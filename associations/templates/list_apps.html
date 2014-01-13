@@ -21,7 +21,7 @@
 
                         <td class="regexprimary"><code>{{ regex|default_if_none:"Undefined" }}</code></td>
                         <td class="regexsecondary"><code>{% if regex %}example.com/<mark>{{ regex|cut:"^"|cut:'/' }}</mark>/list/2014/get{% else %}Not defined in base urls.py{% endif %}</code></td>
-                        <td>{% if regex and not app == 'admin' %}<a class="pure-button pure-button-primary " href="{% url 'ass' app_name=app %}">Associations</a>{% endif %}</td>
+                        <td>{% if regex and not app == 'admin' %}<a class="pure-button pure-button-primary " href="{% url 'associations_for_app' app_name=app %}">Associations</a>{% endif %}</td>
 
                     </tr>
                     {% endfor %}
@@ -29,10 +29,10 @@
             </table>
             {% if not show_all %}
             <p><i class="fa fa-exclamation-triangle"></i> <small>Doesn't display all the installed apps (ex: Admin)</small></p>
-            <small><a class="pure-button pure-button-extra-small" href="{% url 'ass_installed_apps_all' %}">Show all</a></small>
+            <small><a class="pure-button pure-button-extra-small" href="{% url 'associations_installed_apps_all' %}">Show all</a></small>
             {% else %}
             <p>
-            <small><a class="pure-button pure-button-extra-small" href="{% url 'ass_installed_apps' %}">Show less</a></small></p>
+            <small><a class="pure-button pure-button-extra-small" href="{% url 'associations_installed_apps' %}">Show less</a></small></p>
             {% endif %}
         </div>
 {% endblock %}
