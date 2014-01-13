@@ -2,4 +2,26 @@
 {% block body %}
 <h2 class="content-subhead">Associations Usage</h2>
 
+<p>Associations is a simple Django app to show associations between urls and templates of an app. For each app a list of views, view names, view types and urls are shown</p>
+
+<h3 class="content-subhead">Requirements</h3>
+<p>Currently works with Django 1.6 and Python 2.7.x</p>
+<h3 class="content-subhead">Quick start</h3>
+<ol>
+    <li>Add "associations" to your INSTALLED_APPS setting like this::
+    <pre>
+    INSTALLED_APPS = (
+        ...
+        'associations',
+    )
+    </pre></li>
+    <li>Include the polls URLconf in your project urls.py like this::
+    <pre>
+    url(r'^associations/', include('associations.urls')),
+    </pre></li>
+
+    <li>Start the development server and visit <pre>http://127.0.0.1:8000/associations/</pre> and you're done</li>
+
+</ol>
+
 {% endblock %}
