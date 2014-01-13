@@ -24,7 +24,7 @@ setup(
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',
         'Intended Audience :: Information Technology'
-        'License :: OSI Approved :: MIT License', # example license
+        'License :: MIT License', # example license
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
