@@ -14,6 +14,7 @@ setup(
     license='MIT License',  # example license
     description='A simple Django app to show url associations between installed apps.',
     long_description=README,
+    install_requires = ['django>=1.6'],
     url='http://www.pronoy.in/projects/associations',
     author='Pronoy Chopra',
     author_email='contact@pronoy.in',
