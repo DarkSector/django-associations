@@ -2,9 +2,8 @@
 Associations
 =====
 
-Associations is a simple Django app to show associations between urls and templates of an app. For each app a list of views, view names, view types and urls are shown
-
-Detailed documentation is in the "docs" directory.
+Associations is a simple Django app to show associations between urls and templates of an app.
+For each app a list of views, view names, view types and urls are shown
 
 Requirements
 ------------
