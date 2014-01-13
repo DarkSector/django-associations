@@ -29,7 +29,7 @@ Quick start
 
    If the 'BASE_DIR' is defined as some other variable, define BASE_DIR = <variable name>
 
-2. Include the polls URLconf in your project urls.py like this::
+2. Include the Associations URLconf in your project urls.py like this::
 
     url(r'^associations/', include('associations.urls')),
 
