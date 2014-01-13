@@ -77,6 +77,7 @@ def get_pattern_package_name(pattern):
     """
     Returns the package name of the url pattern being analyzed
     """
+    app_name = None
     if hasattr(pattern, 'app_name'):
         app_name = pattern.app_name
         if not app_name:
