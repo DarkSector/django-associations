@@ -36,9 +36,11 @@ def get_root_urls():
     django_settings = get_django_settings()
     root_urls_from_settings = django_settings.ROOT_URLCONF
     base_dir = get_base_dir_path()
-    root_urls_path = root_urls_from_settings.replace('.','/')
-    root_urls_abspath = base_dir + '/' + str(root_urls_path) + '.py'
-    root_urls_module = imp.load_source(root_urls_from_settings.split('.')[1],root_urls_abspath)
+    #root_urls_path = root_urls_from_settings.replace('.','/')
+    #root_urls_abspath = base_dir + '/' + str(root_urls_path) + '.py'
+    #root_urls_module = imp.load_source(root_urls_from_settings.split('.')[1],root_urls_abspath)
+    root_urls_package_name = django_settings.ROOT_URLCONF.split('.')[1]
+    root_urls_module = importlib.import_module(root_urls_package_name, base_dir)
     return root_urls_module
 
 
@@ -267,7 +269,7 @@ def get_app_name_regex_from_app_urls(app_name):
 
         try:
             templates = class_instance.template_name
-        except ImproperlyConfigured:
+        except (ImproperlyConfigured, TypeError) as e:
             templates = None
         views_and_regex[url_pattern.name]['templates'] = templates
         views_and_regex[url_pattern.name]['regex'] = url_pattern._regex
