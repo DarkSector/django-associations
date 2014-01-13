@@ -6,6 +6,12 @@ Associations is a simple Django app to show associations between urls and templa
 
 Detailed documentation is in the "docs" directory.
 
+Requirements
+------------
+
+Currently works with Django 1.6 and Python 2.7.x
+
+
 Quick start
 -----------
 
