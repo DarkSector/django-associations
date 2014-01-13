@@ -23,7 +23,7 @@ setup(
         'Framework :: Django',
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',
-        'Intended Audience :: Information Technology'
+        'Intended Audience :: Information Technology',
         'License :: MIT License', # example license
         'Operating System :: OS Independent',
         'Programming Language :: Python',
