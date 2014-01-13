@@ -13,11 +13,17 @@ class ShowUsage(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(ShowUsage, self).get_context_data(**kwargs)
+        context['usage'] = True
         return context
 
 
 class ShowAboutPage(TemplateView):
     template_name = 'about.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ShowAboutPage, self).get_context_data(*kwargs)
+        context['about'] = True
+        return context
 
 
 class ShowAssociationsForApp(TemplateView):

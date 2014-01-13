@@ -36,10 +36,10 @@
                     <a href="{% url 'associations_installed_apps' %}">Installed Apps</a>
                 </li>
 
-                <li class="menu-item-divided">
+                <li {% if usage %}class="pure-menu-selected menu-item-divided"{% endif %}>
                     <a href="{% url 'app_usage' %}">Usage</a>
                 </li>
-                <li><a href="{% url 'show_about_page' %}">About</a></li>
+                <li {% if about %}class="pure-menu-selected menu-item-divided"{% endif %}><a href="{% url 'show_about_page' %}">About</a></li>
 
             </ul>
         </div>
