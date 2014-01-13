@@ -40,7 +40,7 @@ def get_root_urls():
     #root_urls_abspath = base_dir + '/' + str(root_urls_path) + '.py'
     #root_urls_module = imp.load_source(root_urls_from_settings.split('.')[1],root_urls_abspath)
     root_urls_package_name = django_settings.ROOT_URLCONF.split('.')[1]
-    root_urls_module = importlib.import_module(root_urls_package_name, base_dir)
+    root_urls_module = importlib.import_module(root_urls_from_settings, base_dir)
     return root_urls_module
 
 
