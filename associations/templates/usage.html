@@ -2,7 +2,11 @@
 {% block body %}
 <h2 class="content-subhead">Associations Usage</h2>
 
-<p>Associations is a simple Django app to show associations between urls and templates of an app. For each app a list of views, view names, view types and urls are shown</p>
+<p>Associations is a simple Django app to show associations between urls and other attributes in the installed applications.
+For each app a list of views, view names, view types and urls are shown. When debugging an app, the common and the most
+straightforward way is to trace the view or template through urls.py of the app. Associations places all of these
+template names and view names on a single page so that you don't need to go through the process of locating the
+template/view through the urls.</p>
 
 <h3 class="content-subhead">Requirements</h3>
 <p>Currently works with Django 1.5 above and Python 2.7.x</p>
