@@ -1,6 +1,7 @@
 __author__ = 'DarkSector'
 import os
 import sys
+import pip
 import imp
 import importlib
 
@@ -59,16 +60,13 @@ def get_all_installed_apps_names():
 def get_non_django_installed_apps():
     """
     Returns a list of all the non django apps installed
-
-    The issue is when the app doesn't have the
-    name "Django" in it.
-
-    Therefore a new method needs to be devised
     """
     list_of_installed_apps = []
+    list_of_python_installed_packages = pip.get_installed_distributions()
     django_settings = get_django_settings()
     installed_apps = django_settings.INSTALLED_APPS
     for app in installed_apps:
         if not 'django' in app:
-            list_of_installed_apps.append(app)
+            if not app in list_of_python_installed_packages:
+                list_of_installed_apps.append(app)
     return list_of_installed_apps
