@@ -1,0 +1,11 @@
+=======
+CHANGES
+=======
+
+
+v0.1.6, 2014-01-19
+==================
+
+* The URLS are now shown completely with their app names prepended
+* URL doesn't contain the $ character anymore
+* Bootstrapping functions are now included in bootstraputils.py and not utils.py
