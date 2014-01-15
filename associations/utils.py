@@ -1,13 +1,11 @@
 __author__ = 'DarkSector'
-import os
-import sys
-import imp
+
 import importlib
-import inspect
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 from bootstraputils import get_root_urls, get_django_settings, \
     get_base_dir_path, get_project_name, get_all_installed_apps_names, \
     get_non_django_installed_apps
+
 
 def get_pattern_package_name(pattern):
     """
@@ -129,6 +127,14 @@ def get_all_apps_regex():
 
 
 def get_base_url_pattern_by_app(app_name):
+    """
+    Given the app_name to the method, it searches for
+    the package name it belongs too. Once the package name
+    is retrieved the corresponding REGEXURLResolver instance
+    is returned. That is essentially the URL Pattern
+
+    This particular method doesn't allow Admin app for now
+    """
     root_urls = get_root_urls()
     for url_pattern in root_urls.urlpatterns:
         pkg_name = get_pattern_package_name(url_pattern)
@@ -140,8 +146,14 @@ def get_base_url_pattern_by_app(app_name):
 
 
 def get_app_patterns_from_app_urls(app_name):
-    app_url_base_pattern = get_base_url_pattern_by_app(app_name)
+    """
+    App name is given to the method and
+    it retrieves the corresponding url patterns
+    from the app module
 
+    If the app name doesn't exist, It raises an exception
+    """
+    app_url_base_pattern = get_base_url_pattern_by_app(app_name)
     try:
         app_urls_module_name = app_url_base_pattern.urlconf_name.__name__
     except AttributeError:
@@ -151,26 +163,20 @@ def get_app_patterns_from_app_urls(app_name):
 
 
 def get_app_name_regex_from_app_urls(app_name):
+    """
+    Returns a dict of url_name and view name and template name
+    However the template_name may not be specified for a CBV
 
-    views_and_regex = {}
-    app_url_patterns = get_app_patterns_from_app_urls(app_name)
-    for url_pattern in app_url_patterns:
-        views_and_regex[url_pattern.name] = {}
-        views_and_regex[url_pattern.name]['view_name'] = url_pattern._callback.func_name
-        views_module_string = url_pattern._callback.__module__
-        views_module = importlib.import_module(views_module_string)
-        view_class = getattr(views_module, str(url_pattern._callback.func_name))
-        class_instance = view_class()
-        if hasattr(class_instance, 'template_name'):
-            templates = class_instance.template_name
-        else:
-            templates = None
-        views_and_regex[url_pattern.name]['templates'] = templates
-        views_and_regex[url_pattern.name]['regex'] = url_pattern._regex
-    return views_and_regex
+    Therefore a method needs to be written to retrieve template names
+    by looking at model name and the kind of view.
 
+    Specified here
+    https://docs.djangoproject.com/en/1.5/topics/class-based-views/generic-display/
 
-def get_app_name_regex_from_app_urls_detailed(app_name):
+    For the intended change django.template.loaders.app_directories.Loader
+    must be installed in the TEMPLATE_LOADERS
+
+    """
     views_and_regex = {}
     app_url_patterns = get_app_patterns_from_app_urls(app_name)
     for url_pattern in app_url_patterns:
