@@ -16,6 +16,9 @@ What does it do?
 
 It lists urls in an app along with the names of templates, views and urls associated with it
 
+.. image:: https://raw.github.com/DarkSector/django-associations/master/associations/static/images/associations1.png
+.. image:: https://raw.github.com/DarkSector/django-associations/master/associations/static/images/associations2.png
+
 
 Why was it created?
 ===================
