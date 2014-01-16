@@ -1,5 +1,6 @@
 __author__ = 'DarkSector'
 import os
+import re
 import sys
 import pip
 import imp
@@ -75,13 +76,18 @@ def get_non_django_installed_apps():
 
     #print installed_apps
     for app in installed_apps:
-        if not 'django' in app:
-            # check if the name django doesn't come in
-            for dist_name in list_of_python_installed_packages:
-                # check if the name isn't in any individual app name
-                # in the installed python packages
-                if not app in dist_name:
-                    # if not present
-                    # allow the url to be parsed
-                    list_of_installed_apps.append(app)
+        if not app_name_has_django_in_it(app):
+            list_of_installed_apps.append(app)
     return list_of_installed_apps
+
+
+def app_name_has_django_in_it(app_name):
+    """
+    Return True if app_name contains the word django
+    """
+    rel = '(django)'
+    rg = re.compile(rel, re.IGNORECASE|re.DOTALL)
+    m = rg.search(app_name)
+    if m:
+        return True
+    return False
