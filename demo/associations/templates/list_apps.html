@@ -1,0 +1,38 @@
+{% extends "master_ass.html" %}
+{% load detailed_tags %}
+{% block body %}
+        <h2 class="content-subhead">Installed Applications</h2>
+        <div class="data">
+            <table class="pure-table pure-table-bordered">
+                <thead>
+                    <tr>
+                        <th>App Name</th>
+                        <th>Base URL</th>
+                        <th>Example Pattern</th>
+                        <th>Options</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for app,regex in installed_apps.items %}
+                    <tr>
+                        <td>{{ app }}</td>
+
+                        <td class="regexprimary"><code>{{ regex|default_if_none:"Undefined" }}</code></td>
+                        <td class="regexsecondary"><code>{% if regex %}example.com/<mark>{{ regex|cut:"^"|cut:'/' }}</mark>/list/2014/get{% else %}Not defined in base urls.py{% endif %}</code></td>
+                        <td>{% if regex and not app == 'admin' and not app == 'django.contrib.admindocs' %}<a class="pure-button pure-button-primary " href="{% url 'associations_for_app' app_name=app %}">Associations</a>{% endif %}</td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% if not show_all %}
+            <p><i class="fa fa-exclamation-triangle"></i> <small>Doesn't display all the installed apps (ex: Admin)</small></p>
+            <small><a class="pure-button pure-button-extra-small" href="{% url 'associations_installed_apps_all' %}">Show all</a></small>
+            {% else %}
+            <p>
+            <small><a class="pure-button pure-button-extra-small" href="{% url 'associations_installed_apps' %}">Show less</a></small></p>
+            {% endif %}
+        </div>
+{% endblock %}
