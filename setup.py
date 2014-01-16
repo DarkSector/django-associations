@@ -8,13 +8,16 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-associations',
-    version='0.1.5',
+    version='0.1.6',
     packages=['associations'],
     include_package_data=True,
     license='MIT License',  # example license
     description='A simple Django app to show url associations between installed apps.',
     long_description=README,
-    install_requires = ['django>=1.5'],
+    install_requires = [
+        'django >= 1.5',
+        'pip >= 1.3'
+    ],
     url='https://github.com/DarkSector/django-associations',
     author='Pronoy Chopra',
     author_email='contact@pronoy.in',
