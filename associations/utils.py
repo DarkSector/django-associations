@@ -29,6 +29,10 @@ def is_admin_package(url_pattern):
         # check if that app_name is admin
         if url_pattern.app_name == 'admin':
             return True
+        elif url_pattern is None:
+            url_pattern_app_name = get_pattern_package_name(url_pattern)
+            if url_pattern_app_name == 'django.contrib.admindocs':
+                return True
     return False
 
 
