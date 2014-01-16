@@ -1,0 +1,7 @@
+{% extends "master.html" %}
+        {% block body %}
+            <h2>Detail Demo {{ object.pk }}</h2>
+            <p><strong>Object name</strong> : {{ object.name }}</p>
+            <p><strong>Pub author</strong> : {{ object.pub_author }}</p>
+            <a href="{% url 'list_demo' %}">List</a> / <a href="{% url 'create_demo' %}">Create</a>
+        {% endblock %}
