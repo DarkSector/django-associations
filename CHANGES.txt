@@ -10,3 +10,4 @@ v0.1.6, 2014-01-19
 * URL doesn't contain the $ character anymore
 * Bootstrapping functions are now included in bootstraputils.py and not utils.py
 * ADMIN docs aren't allowed in associations
+* Associations Usage page updated with more details
