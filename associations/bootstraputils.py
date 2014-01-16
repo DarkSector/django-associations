@@ -60,6 +60,8 @@ def get_all_installed_apps_names():
 def get_non_django_installed_apps():
     """
     Returns a list of all the non django apps installed
+
+    New in 0.1.6: Doesn't consider the apps installed using pip
     """
     list_of_installed_apps = []
     list_of_python_installed_packages = []
