@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+
+    <title>Django Associations</title>
+
+
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+
+<link rel="stylesheet" href="{{ STATIC_URL }}css/layouts/side-menu.css">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/layouts/overrides.css">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+
+<div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+
+    <div id="menu">
+        <div class="pure-menu pure-menu-open">
+            <a class="pure-menu-heading" href="">DA</a>
+
+            <ul>
+
+                <li {% if installed_apps_flag %}class="pure-menu-selected menu-item-divided"{% endif %}>
+                    <a href="{% url 'associations_installed_apps' %}">Installed Apps</a>
+                </li>
+
+                <li {% if usage %}class="pure-menu-selected menu-item-divided"{% endif %}>
+                    <a href="{% url 'app_usage' %}">Usage</a>
+                </li>
+                <li {% if about %}class="pure-menu-selected menu-item-divided"{% endif %}><a href="{% url 'show_about_page' %}">About</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div id="main">
+        <div class="header">
+            <h1>Django Associations</h1>
+            <h2>Django found the following associations</h2>
+        </div>
+
+        <div class="content">
+
+            {% block body %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="{{ STATIC_URL }}js/ui.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+
+</body>
+</html>

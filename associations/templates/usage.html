@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+
+    <title>Django Associations</title>
+
+
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+
+<link rel="stylesheet" href="{{ STATIC_URL }}css/layouts/side-menu.css">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/layouts/overrides.css">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+
+<div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+
+    <div id="menu">
+        <div class="pure-menu pure-menu-open">
+            <a class="pure-menu-heading" href="">DA</a>
+
+            <ul>
+
+                <li {% if installed_apps_flag %}class="pure-menu-selected menu-item-divided"{% endif %}>
+                    <a href="{% url 'associations_installed_apps' %}">Installed Apps</a>
+                </li>
+
+                <li {% if usage %}class="pure-menu-selected menu-item-divided"{% endif %}>
+                    <a href="{% url 'app_usage' %}">Usage</a>
+                </li>
+                <li {% if about %}class="pure-menu-selected menu-item-divided"{% endif %}><a href="{% url 'show_about_page' %}">About</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div id="main">
+        <div class="header">
+            <h1>Django Associations v0.1.6</h1>
+        </div>
+
+        <div class="content">
+
+            <h2 class="content-subhead">What is Associations?</h2>
+            <p>Associations is a small app created to help Django developers.</p>
+            <h2 class="content-subhead">What does it do?</h2>
+            <p>It lists urls in an app along with the names of templates, views and urls associated with it</p>
+            <p><img src="{{ STATIC_URL }}/images/associations1.png" alt="associationshelp1"/>
+            <img src="{{ STATIC_URL }}/images/associations2.png" alt="associationshelp2" /></p>
+            <h2 class="content-subhead">Why was it created?</h2>
+            <p>When working on a View, the common method of debugging or back tracing an issue is usually this:
+                <ol>
+                    <li>Look at the URL in the browser's address bar</li>
+                    <li>Decipher the app name from the URL</li>
+                    <li>Open the app project tree in your IDE (if not already open)</li>
+                    <li>Open the app's urls.py and locate the URL</li>
+                    <li>Look for the corresponding view</li>
+                    <li>Locate the view</li>
+                    <li>Locate the template name and subsequently the template itself.</li>
+                </ol>
+            <strong>Associations</strong> on the other hand lists all of them on a single page, thereby decreasing the
+            some times frustrating trace back.
+            </p>
+            <h2 class="content-subhead">Great, but what's the catch?</h2>
+            <p>The catch is that right now it's shown to be compatible with Class Based Views. It may or may not
+            work with traditional Function Based Views. Furthermore it has been tested on Django 1.5+ and Python 2.7.x.
+            There are plans to support Python 3 and Django 1.3+ in the near future.</p>
+
+            <h2 class="content=subhead">Like to help out?</h2>
+            <p>You can find the Github repository here
+                <pre>
+                <code><a href="https://github.com/DarkSector/django-associations">https://github.com/DarkSector/django-associations</a></code>
+                </pre>
+            Log issues or start developing. The documentation is currently being written.
+            </p>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="{{ STATIC_URL }}js/ui.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+
+</body>
+</html>
