@@ -62,17 +62,28 @@ def get_non_django_installed_apps():
     """
     Returns a list of all the non django apps installed
 
-    New in 0.1.6: Doesn't consider the apps installed using pip
+    New in 0.1.6: Doesn't consider apps that haven't been created
+    by the user
     """
     list_of_installed_apps = []
 
     django_settings = get_django_settings()
     installed_apps = django_settings.INSTALLED_APPS
 
-    #print installed_apps
     for app in installed_apps:
-        if not app_name_has_django_in_it(app):# and not app_matches_with_installed_python_packages(app):
-            list_of_installed_apps.append(app)
+        if not app_name_has_django_in_it(app):
+            # filter out all apps that are not created by user
+            # first get their base package name
+            base_pkg_name = get_installed_app_main_package_name(app)
+            # then check if that particular base package is in os.path
+            if is_user_made_app(base_pkg_name):
+                # if os.path.exists() is true
+                list_of_installed_apps.append(app)
+            # this takes care of apps that are a part of Django
+            # If you create an app called django.foo.something
+            # you're generating a conflict, therefore your app
+            # won't be called django.something unless you're
+            # stupid.
     return list_of_installed_apps
 
 
@@ -88,17 +99,20 @@ def app_name_has_django_in_it(app_name):
     return False
 
 
-def app_matches_with_installed_python_packages(app_name):
+def get_installed_app_main_package_name(app_name):
     """
-    Return True if app_name matches any package name in
-    the list of installed distributions returned
-    by pip.get_installed_distributions()
+    For apps like
+    cms.foo.bar
+    you get their base package name 'cms'
     """
-    list_of_python_installed_packages = [str(pkg) for pkg in pip.get_installed_distributions()]
-    for pkg in list_of_python_installed_packages:
-        rel = pkg
-        # rg = re.compile(rel, re.IGNORECASE|re.DOTALL)
-        m = pkg.search(app_name)
-        if m:
-            return True
-    return False
+    return app_name.split('.')[0]
+
+
+def is_user_made_app(app_name):
+    """
+    This is an interesting way
+    Simply check if os.path.exists() is True
+    """
+    base_url = get_base_dir_path()
+    app_full_path = base_url + '/' + app_name
+    return os.path.exists(app_full_path)
