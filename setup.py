@@ -16,7 +16,6 @@ setup(
     long_description=README,
     install_requires = [
         'django >= 1.5',
-        'pip >= 1.3'
     ],
     url='https://github.com/DarkSector/django-associations',
     author='Pronoy Chopra',
