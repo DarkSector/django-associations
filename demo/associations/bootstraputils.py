@@ -2,7 +2,6 @@ __author__ = 'DarkSector'
 import os
 import re
 import sys
-import pip
 import imp
 import importlib
 
