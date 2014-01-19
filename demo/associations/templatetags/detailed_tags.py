@@ -15,5 +15,4 @@ def replacewithappname(value, app_name):
 
 @register.filter
 def cleanpattern(value):
-    value = value.replace('(', '').replace(')', '').replace("'",'').replace('+','').replace('?P','')
-    return value
+    return value.replace('?P','')
