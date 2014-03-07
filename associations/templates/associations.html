@@ -1,11 +1,12 @@
 {% extends "master_ass.html" %}
+{% load url from future %}
 {% load detailed_tags %}
 
 {% block body %}
 <h2 class="content-subhead">{{ app_name }}</h2>
 {% for association in associations.items %}
 <div class="panel">
-        <h4 class="content-subhead"><code><mark>{{ association.1.regex|replacewithappname:app_name|cut:"$"|cleanpattern }}</mark></code></h4>
+        <h4 class="content-subhead"><code><mark>{{ association.1.regex|replacewithappname:app_name|cut:"$" }}</mark></code></h4>
         <pre>
         <strong>View Name</strong>: <span class="listvalue">{{ association.1.view_name }}</span>
         <strong>URL Name</strong>: <span class="listvalue">{{ association.0 }}</span>

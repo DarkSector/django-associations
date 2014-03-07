@@ -1,4 +1,5 @@
 {% extends "master_ass.html" %}
+{% load url from future %}
 {% load detailed_tags %}
 {% block body %}
         <h2 class="content-subhead">Installed Applications</h2>
@@ -30,7 +31,14 @@
             {% if not show_all %}
             <p><i class="fa fa-exclamation-triangle"></i> <small>Doesn't display all the installed apps (ex: Admin)</small></p>
 
-            {% if extra_urls %}
+            <p>
+            <small><a class="pure-button pure-button-extra-small" href="{% url 'associations_installed_apps_all' %}">Show all</a></small></p>
+            {% else %}
+            <p>
+            <small><a class="pure-button pure-button-extra-small" href="{% url 'associations_installed_apps' %}">Show less</a></small></p>
+            {% endif %}
+
+         {% if extra_urls %}
             <h3 class="content-subhead">Extra URLS in the Root URLS</h3>
             <table class="pure-table pure-table-bordered">
                 <thead>
@@ -42,7 +50,7 @@
                 <tbody>
                 {% for extra_url_regex, extra_url_dict in extra_urls.items %}
                     <tr>
-                        <td class="regexprimary"><code>{{ extra_url_regex }}</code></td>
+                        <td class="regexprimary"><code>{{ extra_url_regex|cut:"$" }}</code></td>
                         <td class="regexsecondary"><code>example.com/<mark>{{ extra_url_regex|cut:"^"|cut:"/"|cut:"$" }}</mark></code></td>
                         <td class="regexsecondary"><code>{{ extra_url_dict.template_name }}</code></td>
                         <td class="regexsecondary"><code>{{ extra_url_dict.name }}</code></td>
@@ -50,13 +58,6 @@
                 {% endfor %}
                 </tbody>
             </table>
-            {% endif %}
-
-            <p>
-            <small><a class="pure-button pure-button-extra-small" href="{% url 'associations_installed_apps_all' %}">Show all</a></small></p>
-            {% else %}
-            <p>
-            <small><a class="pure-button pure-button-extra-small" href="{% url 'associations_installed_apps' %}">Show less</a></small></p>
             {% endif %}
         </div>
 {% endblock %}

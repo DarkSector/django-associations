@@ -69,11 +69,12 @@ class ShowAllInstalledApps(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         apps = get_all_apps_regex()
-
+        extra_urls = get_extra_urls_from_root_urls()
         context = super(ShowAllInstalledApps, self).get_context_data(*args, **kwargs)
         context.update({
             'installed_apps': apps,
             'installed_apps_flag': True,
             'show_all': True,
+            'extra_urls': extra_urls,
         })
         return context
