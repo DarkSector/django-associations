@@ -82,7 +82,7 @@ def get_non_django_installed_apps():
             # this takes care of apps that are a part of Django
             # If you create an app called django.foo.something
             # you're generating a conflict, therefore your app
-            # won't be called django.something unless you're
+            # won't be called django.something unless you'rej
             # stupid.
     return list_of_installed_apps
 
@@ -113,6 +113,6 @@ def is_user_made_app(app_name):
     This is an interesting way
     Simply check if os.path.exists() is True
     """
-    base_url = get_base_dir_path()
+    base_url = sys.path[0]
     app_full_path = base_url + '/' + app_name
     return os.path.exists(app_full_path)
