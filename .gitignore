@@ -4,3 +4,6 @@ venv/*
 *.db
 *.sqlite
 .DS_STORE
+demo/static/*
+demo/admin
+demo/venv
