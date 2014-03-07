@@ -113,5 +113,5 @@ def is_user_made_app(app_name):
     Simply check if os.path.exists() is True
     """
     base_url = get_base_dir_path()
-    app_full_path = base_url + '/' + app_name
+    app_full_path = sys.path[0]
     return os.path.exists(app_full_path)
