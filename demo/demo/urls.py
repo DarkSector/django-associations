@@ -9,7 +9,8 @@ urlpatterns = patterns('',
 
     # url(r'^demo/', include('demo.foo.urls')),
 
-    # Uncomment the admin/doc line below to enable admin documentation:
+    # Uncomment the admin/
+    # doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
@@ -19,4 +20,5 @@ urlpatterns = patterns('',
     url(r'^associations/', include('associations.urls')),
 
     url(r'^$', TemplateView.as_view(template_name='index.html'), name='home'),
+    url(r'^blog/$', TemplateView.as_view(template_name='index.html'), name='blog'),
 )
