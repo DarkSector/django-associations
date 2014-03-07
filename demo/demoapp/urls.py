@@ -3,6 +3,7 @@ from django.conf.urls import patterns, url
 from django.views.generic import TemplateView
 from views import CreateDemoPageView, \
     ListDemoPageView, DetailDemoView, FooView
+from associations.views import ShowAboutPage
 
 urlpatterns = patterns('',
     # Examples:
@@ -29,5 +30,9 @@ urlpatterns = patterns('',
     url(r'^$',
         TemplateView.as_view(template_name='index_demo.html'),
         name='index_demo'),
+
+    url(r'^associations/about/$',
+        ShowAboutPage.as_view(),
+        name='associations_about_cross_application')
 
 )
