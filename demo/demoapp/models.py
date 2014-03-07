@@ -6,4 +6,4 @@ class Demo(models.Model):
 
     name = models.CharField(max_length=150, unique=True)
     pub_date = models.DateTimeField(auto_now=True)
-    pub_author = models.OneToOneField(User)
+    pub_author = models.ForeignKey(User)
