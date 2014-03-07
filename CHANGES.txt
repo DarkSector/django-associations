@@ -2,6 +2,11 @@
 CHANGES
 =======
 
+v0.1.7, 2014-03-07
+==================
+
+* Removed special chars from the URLS
+* Fixed Base directory bug; The base dir for apps is the python_path
 
 v0.1.6, 2014-01-19
 ==================
