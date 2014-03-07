@@ -5,7 +5,7 @@ import imp
 import importlib
 from django.views.generic import TemplateView
 from utils import get_all_apps_regex, get_non_django_apps_regex, \
-    get_app_name_regex_from_app_urls
+    get_app_name_regex_from_app_urls, get_extra_urls_from_root_urls
 
 # Create your views here.
 class ShowUsage(TemplateView):
@@ -56,9 +56,11 @@ class ShowInstalledApps(TemplateView):
     def get_context_data(self, *args, **kwargs):
         #_apps = get_installed_apps_names()
         apps = get_non_django_apps_regex()
+        extra_urls = get_extra_urls_from_root_urls()
         context = super(ShowInstalledApps, self).get_context_data(*args, **kwargs)
         context['installed_apps'] = apps
         context['installed_apps_flag'] = True
+        context['extra_urls'] = extra_urls
         return context
 
 
