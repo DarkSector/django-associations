@@ -30,7 +30,14 @@
             {% if not show_all %}
             <p><i class="fa fa-exclamation-triangle"></i> <small>Doesn't display all the installed apps (ex: Admin)</small></p>
 
-            {% if extra_urls %}
+            <p>
+            <small><a class="pure-button pure-button-extra-small" href="{% url 'associations_installed_apps_all' %}">Show all</a></small></p>
+            {% else %}
+            <p>
+            <small><a class="pure-button pure-button-extra-small" href="{% url 'associations_installed_apps' %}">Show less</a></small></p>
+            {% endif %}
+
+         {% if extra_urls %}
             <h3 class="content-subhead">Extra URLS in the Root URLS</h3>
             <table class="pure-table pure-table-bordered">
                 <thead>
@@ -50,13 +57,6 @@
                 {% endfor %}
                 </tbody>
             </table>
-            {% endif %}
-
-            <p>
-            <small><a class="pure-button pure-button-extra-small" href="{% url 'associations_installed_apps_all' %}">Show all</a></small></p>
-            {% else %}
-            <p>
-            <small><a class="pure-button pure-button-extra-small" href="{% url 'associations_installed_apps' %}">Show less</a></small></p>
             {% endif %}
         </div>
 {% endblock %}
