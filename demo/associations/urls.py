@@ -1,5 +1,6 @@
 __author__ = 'DarkSector'
 from django.conf.urls import patterns, url
+from django.views.generic import RedirectView
 from views import ShowAssociationsForApp, ShowInstalledApps, \
     ShowAllInstalledApps, ShowUsage, ShowAboutPage
 
@@ -24,15 +25,22 @@ urlpatterns = patterns('',
         name='associations_for_app',
     ),
 
+    url(r'^usage/',
+        ShowUsage.as_view(),
+        name='app_usage',
+        ),
+
     url(r'^about',
         ShowAboutPage.as_view(),
         name="show_about_page",
         ),
 
     url(r'^',
-        ShowUsage.as_view(),
-        name='app_usage',
+        RedirectView.as_view(url='/associations/installed/'),
+        name='front_page',
         ),
+
+
 
 
 )
