@@ -12,3 +12,7 @@ def cut(value, arg):
 def replacewithappname(value, app_name):
     replaced_app_name = '/'+app_name+'/'
     return value.replace('^', replaced_app_name)
+
+@register.filter
+def cleanpattern(value):
+    return value.replace('?P','')
