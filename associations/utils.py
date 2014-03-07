@@ -1,6 +1,7 @@
 __author__ = 'DarkSector'
 
 import importlib
+from django.core.urlresolvers import RegexURLPattern
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 from bootstraputils import get_root_urls, get_django_settings, \
     get_base_dir_path, get_project_name, get_all_installed_apps_names, \
@@ -129,6 +130,23 @@ def get_all_apps_regex():
             apps_and_regex[app_name] = None
     return apps_and_regex
 
+
+def get_extra_urls_from_root_urls():
+    """
+    Extra urls are the ones defined without an
+    app in the Root urls.py.
+    """
+    root_urls = get_root_urls()
+    list_of_RegexURLPattern = []
+    urls_and_regex = {}
+    for url_pattern in root_urls.urlpatterns:
+        if isinstance(url_pattern, RegexURLPattern):
+            list_of_RegexURLPattern.append(url_pattern)
+
+    for url_pattern in list_of_RegexURLPattern:
+        urls_and_regex[url_pattern._regex] = {'name': url_pattern.name }
+
+    return urls_and_regex
 
 def get_base_url_pattern_by_app(app_name):
     """

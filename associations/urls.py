@@ -20,10 +20,6 @@ urlpatterns = patterns('',
         name='associations_installed_apps',
         ),
 
-    url(r'^(?P<app_name>[ \w]+)/$',
-        ShowAssociationsForApp.as_view(),
-        name='associations_for_app',
-    ),
 
     url(r'^usage/',
         ShowUsage.as_view(),
@@ -35,9 +31,14 @@ urlpatterns = patterns('',
         name="show_about_page",
         ),
 
+    url(r'^(?P<app_name>[ \w]+)/$',
+        ShowAssociationsForApp.as_view(),
+        name='associations_for_app',
+    ),
+
     url(r'^',
         RedirectView.as_view(url='/associations/installed/'),
-        name='front_page',
+        name='associations',
         ),
 
 
