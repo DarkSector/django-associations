@@ -130,6 +130,8 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'demoapp',
     'associations',
+    'debug_toolbar',
+
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
