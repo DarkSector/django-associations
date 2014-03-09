@@ -15,7 +15,7 @@ setup(
     description='A simple Django app to show url associations between installed apps.',
     long_description=README,
     install_requires = [
-        'django >= 1.5',
+        'django >= 1.4',
     ],
     url='https://github.com/DarkSector/django-associations',
     author='Pronoy Chopra',
