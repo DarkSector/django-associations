@@ -1,6 +1,7 @@
 __author__ = 'DarkSector'
 
 import importlib
+from collections import OrderedDict
 from django.core.urlresolvers import RegexURLPattern
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 from bootstraputils import get_root_urls, get_django_settings, \
@@ -214,4 +215,19 @@ def get_app_name_regex_from_app_urls(app_name):
             templates = None
         views_and_regex[url_pattern.name]['templates'] = templates
         views_and_regex[url_pattern.name]['regex'] = url_pattern._regex
-    return views_and_regex
+
+    list_of_unsorted_regex_elements = []
+    list_of_sorted_regex_elements = []
+    sorted_views_and_regex = OrderedDict()
+    for i in views_and_regex:
+        list_of_unsorted_regex_elements.append(views_and_regex[i]['regex'])
+
+    for element in sorted(list_of_unsorted_regex_elements):
+        list_of_sorted_regex_elements.append(element)
+
+    for count, regex_element in enumerate(list_of_sorted_regex_elements):
+        for vr_element in views_and_regex:
+            if views_and_regex[vr_element]['regex'] == regex_element:
+                sorted_views_and_regex[vr_element] = views_and_regex[vr_element]
+
+    return sorted_views_and_regex
