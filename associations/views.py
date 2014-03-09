@@ -35,10 +35,7 @@ class ShowAssociationsForApp(TemplateView):
     def get_context_data(self, *args, **kwargs):
         app_name = self.kwargs.get('app_name')
         # get app_name and then get associations for it.
-
         associations_dict = get_app_name_regex_from_app_urls(app_name)
-
-
         context = super(ShowAssociationsForApp, self).get_context_data(**kwargs)
         context.update({
             'associations' : associations_dict,

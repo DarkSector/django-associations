@@ -22,7 +22,6 @@ def get_base_dir_path():
     """
     django_settings = get_django_settings()
     base_dir_path = django_settings.BASE_DIR
-    python_path = sys.path[0]
     return base_dir_path
 
 
@@ -115,3 +114,11 @@ def is_user_made_app(app_name):
     base_url = get_base_dir_path()
     app_full_path = sys.path[0]
     return os.path.exists(app_full_path)
+
+
+def get_models_by_app(app_name):
+    """
+    Returns model module after import of the app_name
+
+    """
+    return None

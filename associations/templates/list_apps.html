@@ -44,7 +44,6 @@
                 <thead>
                     <th>Pattern</th>
                     <th>Example Pattern</th>
-                    <th>Template</th>
                     <th>URL Name</th>
                 </thead>
                 <tbody>
@@ -52,7 +51,6 @@
                     <tr>
                         <td class="regexprimary"><code>{{ extra_url_regex|cut:"$" }}</code></td>
                         <td class="regexsecondary"><code>example.com/<mark>{{ extra_url_regex|cut:"^"|cut:"/"|cut:"$" }}</mark></code></td>
-                        <td class="regexsecondary"><code>{{ extra_url_dict.template_name }}</code></td>
                         <td class="regexsecondary"><code>{{ extra_url_dict.name }}</code></td>
                     </tr>
                 {% endfor %}

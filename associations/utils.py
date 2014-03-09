@@ -1,6 +1,7 @@
 __author__ = 'DarkSector'
 
 import importlib
+from collections import OrderedDict
 from django.core.urlresolvers import RegexURLPattern
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 from bootstraputils import get_root_urls, get_django_settings, \
@@ -212,6 +213,43 @@ def get_app_name_regex_from_app_urls(app_name):
             templates = class_instance.template_name
         else:
             templates = None
+        url_code_chunk = None
         views_and_regex[url_pattern.name]['templates'] = templates
         views_and_regex[url_pattern.name]['regex'] = url_pattern._regex
-    return views_and_regex
+        views_and_regex[url_pattern.name]['url_code'] = url_code_chunk
+
+    list_of_unsorted_regex_elements = []
+    list_of_sorted_regex_elements = []
+    sorted_views_and_regex = OrderedDict()
+    for i in views_and_regex:
+        list_of_unsorted_regex_elements.append(views_and_regex[i]['regex'])
+
+    for element in sorted(list_of_unsorted_regex_elements):
+        list_of_sorted_regex_elements.append(element)
+
+    for count, regex_element in enumerate(list_of_sorted_regex_elements):
+        for vr_element in views_and_regex:
+            if views_and_regex[vr_element]['regex'] == regex_element:
+                sorted_views_and_regex[vr_element] = views_and_regex[vr_element]
+
+    return sorted_views_and_regex
+
+def get_url_code_chunk_for_keyword(app_name, url_name):
+    """
+    Can be used to get a chunk of urls.py that contains
+    the url_name
+    This is helpful in cases where the template_name is provided
+    at runtime
+    Now, this is basically case matching. That means the file
+    will be read. Now the problem in this case is that if the
+    urls are of the form (file hierarchy):
+    urls
+        |foo
+        |bar
+        |foobar
+            |foobar1
+            |foobar2
+    Then it is impossible to know which file to read without
+    something like grep
+    """
+    return None
