@@ -42,8 +42,8 @@ Great, but what's the catch?
 
 
 The catch is that right now it's shown to be compatible with Class Based Views. It may or may not
-work with traditional Function Based Views. Furthermore it has been tested on Django 1.5+ and Python 2.7.x.
-There are plans to support Python 3 and Django 1.3+ in the near future.
+work with traditional Function Based Views. Furthermore it has been tested on Django 1.4+ and Python 2.7.x.
+There are plans to support Python 3. Django 1.3 won't be supported due to change in URL structures.
 
 
 Like to help out?
@@ -61,7 +61,7 @@ Requirements
 ============
 
 
-Currently works with Django 1.5 above and Python 2.7.x.
+Currently works with Django 1.4 above and Python 2.7.x.
 Currently the docs and tests are being written and aren't complete
 
 

@@ -2,14 +2,15 @@
 CHANGES
 =======
 
-v0.1.7, 2014-03-07
+v0.1.7, 2014-03-09
 ==================
 
-* Special chars will be shown in the Regex
+* Some special chars will be shown in the Regex
 * Fixed Base directory bug; The base dir for apps is the python_path
 * Fixed Issue #10, Root URLS now show all patterns
 * Templates and views can be imported from across apps and will be shown across apps
 * Compatible with Django 1.4+
+* URLS are clumped together in alphabetical order
 
 v0.1.6, 2014-01-19
 ==================
