@@ -23,9 +23,17 @@ urlpatterns = patterns('',
         DetailDemoView.as_view(),
         name='detail_demo'),
 
+    url(r'^detail/demo_link/(?P<pk>\d+)/$',
+        DetailDemoView.as_view(),
+        name='detail_demo_demolink'),
+
     url(r'^foo/(?P<pk>\d+)/bar/(?P<demo_pk>\w+)/extend/(?P<demo2_pk>\w+)$',
         FooView.as_view(),
         name='foo_demo'),
+
+    url(r'^foo/foo2/(?P<pk>\d+)/bar/(?P<demo_pk>\w+)/extend/(?P<demo2_pk>\w+)$',
+        FooView.as_view(),
+        name='foo_demo2'),
 
     url(r'^$',
         TemplateView.as_view(template_name='index_demo.html'),
