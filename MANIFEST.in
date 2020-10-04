@@ -1,6 +1,0 @@
-include LICENSE
-include README.rst
-recursive-include associations/static *
-recursive-include associations/templates *
-recursive-include associations/templatetags *
-prune demo
