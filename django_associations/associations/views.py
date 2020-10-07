@@ -1,13 +1,15 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-
 # Create your views here.
-from django.views import View
 from django.views.generic import TemplateView
+
 from .api import get_association_list
 
 
-class AssociationsView(View):
+class AssociationsView(TemplateView):
+    template_name = "basic.html"
 
-    def get(self, request, *args, **kwargs):
-        return HttpResponse(content=get_association_list())
+    def get_context_data(self, **kwargs):
+        context = super(AssociationsView, self).get_context_data(**kwargs)
+        context.update({
+            "associations": get_association_list()
+        })
+        return context
