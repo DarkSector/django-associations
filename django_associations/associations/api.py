@@ -21,7 +21,18 @@ def extract_views_from_urlpatterns(urlpatterns, base='', namespace=None):
                 else:
                     name = p.name
                 pattern = describe_pattern(p)
-                views.append((p.callback, base + pattern, name))
+                try:
+                    lookup_str = p.lookup_str
+                except Exception:
+                    lookup_str = None
+
+                _data = {
+                    "lookup_str": lookup_str,
+                    "callback": p.callback,
+                    "pattern": base + pattern,
+                    "name": name
+                }
+                views.append(_data)
             except ViewDoesNotExist:
                 continue
         elif isinstance(p, (URLResolver,)):
@@ -34,7 +45,6 @@ def extract_views_from_urlpatterns(urlpatterns, base='', namespace=None):
             else:
                 _namespace = (p.namespace or namespace)
             pattern = describe_pattern(p)
-            print(_namespace)
             views.extend(extract_views_from_urlpatterns(patterns, base + pattern, namespace=_namespace))
         elif hasattr(p, '_get_callback'):
             try:
