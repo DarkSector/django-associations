@@ -27,7 +27,7 @@ def extract_views_from_urlpatterns(urlpatterns, base='', namespace=None):
                     lookup_str = None
 
                 _data = {
-                    "lookup_str": lookup_str,
+                    "view_str": lookup_str,
                     "callback": p.callback,
                     "pattern": base + pattern,
                     "name": name
