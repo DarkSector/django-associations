@@ -10,8 +10,8 @@ class AssociationsView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(AssociationsView, self).get_context_data(**kwargs)
         associations = get_association_list()
-        # class_based_update_view_module = parse_class_based_views("testapp2.views.ClassBasedViews"
-        #                                                          ".DoubleClassBasedTemplateViewNoAttributeOverride")
+        class_based_update_view_module = parse_class_based_views("testapp2.views.ClassBasedViews"
+                                                                 ".DoubleClassBasedTemplateViewNoAttributeOverride")
         context.update({
             "associations": associations
         })

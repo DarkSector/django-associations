@@ -68,10 +68,13 @@ def get_association_list():
     return extract_views_from_urlpatterns(urlconf.urlpatterns)
 
 
-def parse_class_based_views(cbv_path, ):
+def parse_class_based_views(cbv_path, ignore_class=True, ignore_functions=True, ignore_methods=True):
     module_hierarchy = cbv_path.split(".")
     mod = __import__(module_hierarchy[0])
     for module in module_hierarchy[1:]:
         mod = getattr(mod, module)
-    members = inspect.getmembers(mod)
-    return members
+
+    boring = dir(type('dummy', (object,), {}))
+    return [item for item in inspect.getmembers(mod) if
+            item[0] not in boring and not inspect.isfunction(item[1]) and not inspect.ismethod(
+                item[1]) and not inspect.isclass(item[1])]
