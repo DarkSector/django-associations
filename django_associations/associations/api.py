@@ -75,6 +75,15 @@ def parse_class_based_views(cbv_path, ignore_class=True, ignore_functions=True, 
         mod = getattr(mod, module)
 
     boring = dir(type('dummy', (object,), {}))
+
+    def check_for_classes(x):
+        return inspect.isclass(x) and not ignore_class
+
+    def check_for_functions(x):
+        return inspect.isfunction(x) and not ignore_functions
+
+    def check_for_methods(x):
+        return inspect.ismethod(x) and not ignore_methods
+
     return [item for item in inspect.getmembers(mod) if
-            item[0] not in boring and not inspect.isfunction(item[1]) and not inspect.ismethod(
-                item[1]) and not inspect.isclass(item[1])]
+            item[0] not in boring and not check_for_classes(item[1]) and not check_for_functions(item[1]) and check_for_methods(item[1])]
