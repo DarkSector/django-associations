@@ -2,6 +2,7 @@ from django.conf import settings
 from django.urls import URLResolver
 from django_extensions.management.commands.show_urls import (URLPattern, describe_pattern,
                                                              ViewDoesNotExist)
+import inspect
 
 
 def extract_views_from_urlpatterns(urlpatterns, base='', namespace=None):
@@ -65,3 +66,12 @@ def extract_views_from_urlpatterns(urlpatterns, base='', namespace=None):
 def get_association_list():
     urlconf = __import__(getattr(settings, "ROOT_URLCONF"), {}, {}, [''])
     return extract_views_from_urlpatterns(urlconf.urlpatterns)
+
+
+def parse_class_based_views(cbv_path, ):
+    module_hierarchy = cbv_path.split(".")
+    mod = __import__(module_hierarchy[0])
+    for module in module_hierarchy[1:]:
+        mod = getattr(mod, module)
+    members = inspect.getmembers(mod)
+    return members
