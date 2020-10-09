@@ -1,10 +1,13 @@
+from typing import List, Tuple, Dict
+
 from django.conf import settings
 from django.urls import URLResolver
 from django_extensions.management.commands.show_urls import (URLPattern, describe_pattern,
                                                              ViewDoesNotExist)
+import inspect
 
 
-def extract_views_from_urlpatterns(urlpatterns, base='', namespace=None):
+def extract_views_from_urlpatterns(urlpatterns, base='', namespace=None) -> List[Dict]:
     """
     Return a list of views from a list of urlpatterns.
 
@@ -65,3 +68,31 @@ def extract_views_from_urlpatterns(urlpatterns, base='', namespace=None):
 def get_association_list():
     urlconf = __import__(getattr(settings, "ROOT_URLCONF"), {}, {}, [''])
     return extract_views_from_urlpatterns(urlconf.urlpatterns)
+
+
+def parse_class_based_views(cbv_path: str, ignore_class: bool = True, ignore_functions: bool = True,
+                            ignore_methods: bool = True) -> List[Tuple]:
+    module_hierarchy = cbv_path.split(".")
+    mod = __import__(module_hierarchy[0])
+    for module in module_hierarchy[1:]:
+        mod = getattr(mod, module)
+
+    boring = dir(type('dummy', (object,), {}))
+
+    final = []
+    for item in inspect.getmembers(mod):
+        if item[0] not in boring:
+
+            if ignore_class:
+                if inspect.isclass(item[1]):
+                    continue
+            if ignore_functions:
+                if inspect.isfunction(item[1]):
+                    continue
+            if ignore_methods:
+                if inspect.ismethod(item[1]):
+                    continue
+
+            final.append(item)
+
+    return final
