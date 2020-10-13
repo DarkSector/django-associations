@@ -9,7 +9,8 @@ class AssociationsView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(AssociationsView, self).get_context_data(**kwargs)
+        associations = get_association_list()
         context.update({
-            "associations": get_association_list()
+            "associations": associations
         })
         return context
