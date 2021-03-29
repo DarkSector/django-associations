@@ -1,7 +1,7 @@
 Django==1.5.5
 Jinja2==2.7.2
 MarkupSafe==0.18
-Pygments==1.6
+Pygments==2.7.4
 Sphinx==1.2
 argparse==1.2.1
 django-debug-toolbar==1.0.1
